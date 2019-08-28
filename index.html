@@ -4,134 +4,8 @@
 <head>
     <title>Canvas Animation</title>
     <meta charset="utf-8">
-    <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        canvas {
-            border-style: none;
-        }
-
-        .home {
-            width: 100vw;
-            height: 100vh;
-            position: absolute;
-            left: 0;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.8)
-        }
-
-        .home ul {
-            list-style: none;
-
-        }
-
-        .home ul li {
-            display: inline-block;
-            margin: 0 10px;
-        }
-
-        .home ul li a {
-            color: #fff;
-            font-size: 28px;
-            font-weight: bold;
-            display: block;
-            text-decoration: none;
-        }
-
-        .home ul li a:hover {
-            color: #999;
-        }
-
-        .container {
-            position: absolute;
-            left: 0;
-            top: 10px;
-            width: 300px;
-            min-height: 350px;
-            color: #fff;
-            transform: translateX(-300px);
-            transition: all 300ms ease-out 0ms;
-        }
-
-        .container.show {
-            transition: all 300ms ease-in 0ms;
-            transform: translateX(0);
-        }
-
-        .container header {
-            font-size: 20px;
-            font-weight: bold;
-            text-align: center;
-            text-transform: capitalize;
-            padding: 12px;
-            border: 1px solid #fff;
-        }
-
-        .container article {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid #fff;
-            box-sizing: border-box;
-            margin: 8px;
-            margin-bottom: 70px;
-        }
-
-        .container article p {
-            text-align: justify;
-            margin: 10px 5px;
-            padding: 8px;
-
-        }
-
-        .container footer {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            border: 1px solid #fff;
-            text-align: center;
-            padding: 12px;
-        }
-
-        .container footer cite {
-            font-style: initial;
-            color: '#f00';
-        }
-
-        .container span {
-            top: 0;
-            cursor: pointer;
-            opacity: 0.2;
-            position: absolute;
-            border-radius: 150px;
-            padding: 8px 12px;
-            color: #fff;
-            font-size: 24px;
-            border: 2px solid #fff;
-        }
-
-        .container.container.show span {
-            left: 100vh;
-
-        }
-
-        .container.show span:hover {
-            background-color: #a00;
-            opacity: 1;
-        }
-    </style>
+    <link rel="stylesheet" href="costum.css">
+    <meta name="viewport" content="width=device-width">
 </head>
 
 <body>
@@ -157,54 +31,15 @@
             <span onclick="javascript: document.getElementById('component').classList.remove('show')">X</span>
         </section>
     </div>
+    <script>
+        // inicializar o Canvas
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+    </script>
+
+    <script src="canvas.js"></script>
+    <script Src="info.js"></script>
+    <script src="effect.menu.js"></script>
 </body>
-<script>
-    // inicializar o Canvas
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-
-</script>
-
-<script src="canvas.js"></script>
-<script Src="info.js"></script>
-<script>
-    const color = {
-        'home': '#000',
-        'web': '#f00',
-        'mobile': '#0f0',
-        'blog': '#00f',
-        'contacto': '#ff0'
-    }
-
-    let links = document.querySelectorAll('.home ul li a');
-
-    for (let link of links) {
-
-        link.addEventListener('click', (e) => {
-            markColor();
-
-            title = e.target.getAttribute('title');
-            setColorBackground(color[title])
-            e.target.style.color = color[title];
-
-            document.querySelector('.container-info').classList.add('show')
-
-            component(datas[title]);
-        })
-    }
-
-    function markColor() {
-        for (let link of links) link.style.color = "#000";
-    }
-
-    //  console.log(links);
-
-    function component(data) {
-        const container = document.querySelector('.container').children;
-        container[0].textContent = data.title;
-        container[1].children[0].innerHTML = data.content;
-
-    }
-</script>
 
 </html>
